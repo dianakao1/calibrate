@@ -94,6 +94,7 @@ const CSS = `
 .goal { position:absolute; top:6px; height:21px; width:0; border-left:2px dashed var(--flag); }
 .goal-lbl { position:absolute; top:-14px; transform:translateX(-50%); white-space:nowrap;
   font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; color:var(--flag); text-transform:uppercase; }
+.goal[data-edge="1"] .goal-lbl { transform:translateX(calc(-100% + 2px)); }
 .gauge-note { font-family:var(--mono); font-size:10.5px; line-height:1.5; color:var(--muted); margin-top:4px; }
 
 /* ---- buttons ---- */
@@ -2773,8 +2774,8 @@ function estimate(records) {
 }
 
 const SCALES = {
-  'GRE:Quant':  { lo:130, hi:170, goal:165, goalLabel:'Target', name:'GRE Quantitative' },
-  'GRE:Verbal': { lo:130, hi:170, goal:157, goalLabel:'Target', name:'GRE Verbal' },
+  'GRE:Quant':  { lo:130, hi:170, goal:170, goalLabel:'Target', name:'GRE Quantitative' },
+  'GRE:Verbal': { lo:130, hi:170, goal:170, goalLabel:'Target', name:'GRE Verbal' },
   'GMAT:total': { lo:205, hi:805, goal:645, goalLabel:'Target', name:'GMAT total' },
 };
 
@@ -3030,7 +3031,7 @@ function Gauge({ scaleKey, records }) {
           {ticks}
           <div className="band" style={{ left: `${pct(lo)}%`, width: `${pct(hi) - pct(lo)}%` }} />
           <div className="needle" style={{ left: `${pct(score)}%` }} />
-          <div className="goal" style={{ left: `${pct(s.goal)}%` }}>
+          <div className="goal" data-edge={pct(s.goal) > 92 ? 1 : 0} style={{ left: `${pct(s.goal)}%` }}>
             <div className="goal-lbl">{s.goalLabel} {s.goal}</div>
           </div>
         </div>
@@ -4548,10 +4549,13 @@ function Calibrate() {
                 <h2 className="h2">Aiming at a perfect score</h2>
                 <div className="card pad" style={{ fontSize: 15, lineHeight: 1.65 }}>
                   <p style={{ marginTop: 0 }}>
-                    <b>170Q is the realistic target; 170V is not worth chasing.</b> A perfect quant score is
-                    attainable for a strong engineer and is the number Penn and Georgia Tech actually weigh.
-                    A perfect verbal score sits at the very top of the distribution and buys you almost nothing
-                    in an engineering file. Aim 170Q, and treat verbal as a floor to clear rather than a summit.
+                    <b>The target is 170 on both sections.</b> A perfect quant score is attainable for a
+                    strong engineer and is the number Penn and Georgia Tech actually weigh. A perfect verbal
+                    score is a different kind of climb — it is decided less by raw ability than by vocabulary
+                    coverage and reading discipline — but it yields to the same machinery: the card decks
+                    schedule vocabulary until recall is automatic, and the error tags show whether verbal
+                    misses come from unknown words, misreading, or pace. Both sections get the same standard
+                    here: hard-band mastery, on pace, at 90-plus percent accuracy.
                   </p>
                   <p>
                     <b>At this level, accuracy is not the metric — consistency is.</b> Missing one quant question
