@@ -1,0 +1,44 @@
+/* The app ships its own styles in a <style> tag, scoped to .cal.
+   These rules only set up the page around it. */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: #EDF0F3;
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Update prompt shown by the service worker registration in main.jsx. */
+#sw-update {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 2px;
+  background: #15212B;
+  color: #fff;
+  font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  font-size: 12px;
+  box-shadow: 0 4px 20px rgba(21, 33, 43, .3);
+}
+#sw-update span { flex: 1; }
+#sw-update button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media (min-width: 700px) {
+  #sw-update { left: auto; right: 20px; max-width: 380px; }
+}

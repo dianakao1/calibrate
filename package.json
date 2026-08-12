@@ -1,0 +1,32 @@
+{
+  "name": "calibrate",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Adaptive GRE/GMAT practice: timed sections on a real clock, spaced repetition, and error tagging that shows whether you are losing points to carelessness, concepts, or pace. Built to current test formats. Offline, accessible, no account.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  },
+  "keywords": [
+    "gre",
+    "gmat",
+    "test-prep",
+    "spaced-repetition",
+    "flashcards",
+    "education",
+    "react",
+    "vite",
+    "study-tool",
+    "accessibility"
+  ]
+}
